@@ -251,6 +251,7 @@ function M.find(buf, cb, opts)
       for _, match, meta in query:iter_matches(tstree:root(), buf, from and from - 1 or nil, to) do
         if not meta[META_IGNORE] then
           ---@type snacks.image.ctx
+          if tree:lang() == "latex" then goto continue end
           local ctx = {
             buf = buf,
             lang = tostring(meta[META_LANG] or meta["injection.language"] or tree:lang()),
@@ -267,6 +268,7 @@ function M.find(buf, cb, opts)
           end
           ret[#ret + 1] = M._img(ctx)
         end
+        ::continue::
       end
     end)
     cb(ret)

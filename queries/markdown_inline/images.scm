@@ -1,3 +1,9 @@
+; extends
+
+((latex_block)
+  (#set! image.lang "typst")
+  (#set! image.ext "math.typ")
+) @image.content @image
 
 (image
   [
